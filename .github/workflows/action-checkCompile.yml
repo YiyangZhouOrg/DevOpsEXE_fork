@@ -7,19 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install maven
-        run: cd ../..; sudo apt-get install maven
+        run: sudo apt-get install maven
 
       - name: Check maven
         run: mvn -version
 
       - name: Maven compile
-        run: mvn compile
+        run: cd ../..; mvn compile
 
       - name: Package the project
-        run: mvn package
+        run: cd ../..; mvn package
 
       - name: Run maven test
-        run: mvn test
+        run: cd ../..; mvn test
 
       - name: Clean maven project
-        run: mvn clean
+        run: cd ../..; mvn clean
