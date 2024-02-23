@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install maven
-        run: apt-get install maven
+        run: sudo apt-get install maven
 
       - name: Check maven
         run: mvn -version
