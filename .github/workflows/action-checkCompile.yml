@@ -6,6 +6,13 @@ jobs:
   Check-Maven-Build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+            distribution: 'adopt'
+            java-version: '17'
+
+
       - name: Install maven
         run: sudo apt-get install maven
 
@@ -13,13 +20,15 @@ jobs:
         run: mvn -version
 
       - name: Maven compile
-        run: cd ../..; mvn compile
+        run: |
+          cd $GITHUB_WORKSPACE  # Ensure you are in the correct directory
+          mvn compile
 
-      - name: Package the project
-        run: cd ../..; mvn package
+#      - name: Package the project
+#        run: cd ../..; mvn package
 
       - name: Run maven test
-        run: cd ../..; mvn test
+        run: mvn test
 
-      - name: Clean maven project
-        run: cd ../..; mvn clean
+#      - name: Clean maven project
+#        run: cd ../..; mvn clean
