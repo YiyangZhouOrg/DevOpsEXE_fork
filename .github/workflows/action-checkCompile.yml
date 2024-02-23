@@ -1,0 +1,25 @@
+name: GitHub Actions Check Compile
+run-name: Checking Maven Build Status
+on: [pull_request]
+
+jobs:
+  Check-Maven-Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install maven
+        run: sudo apt-get install maven
+
+      - name: Check maven
+        run: mvn -version
+
+      - name: Maven compile
+        run: mvn compile
+
+      - name: Package the project
+        run: mvn package
+
+      - name: Run maven test
+        run: mvn test
+
+      - name: Clean maven project
+        run: mvn clean
